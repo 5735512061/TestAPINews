@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Create News</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  	<link href="https://fonts.googleapis.com/css?family=Dosis:400,700" rel="stylesheet">
+  	<link href="style.css" rel="stylesheet">
+  	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+	<ul>
+		<li><img src="img/news.png" width="40px;"></li>
+		<li><a class="active" href="homepage.html">Home</a></li>
+	</ul>
+	<br><br><br><br><br>
+	<form id="add">
+ 		Title<br>
+  		<input type="text" id="title">
+  		<br>
+  		Detail<br>
+  		<textarea id="detail" rows="7"></textarea>
+  		<br><br>
+  		<input type="submit" action="" value="CANCEL">
+  		<input type="submit" value="SAVE">
+	</form> 
+</body>
+
+<!-- <script type="text/javascript">
+var request = new XMLHttpRequest();
+var url = "https://agile-cliffs-83142.herokuapp.com/api/news";
+request.open("POST", url, true);
+request.setRequestHeader("Content-Type", "application/json");
+request.onreadystatechange = function () {
+    if (request.readyState === 4 && request.status === 200) {
+        var json = JSON.parse(request.responseText);
+        console.log(json.title + ", " + json.detail);
+    }
+};
+
+var data = JSON.stringify({"title": "test", "detail": "Detail"});
+request.send(data);
+
+</script> -->
+
+<script type="text/javascript">
+$('form').on('submit',function(e){
+
+var request = new XMLHttpRequest();
+var url = "https://agile-cliffs-83142.herokuapp.com/api/news";
+request.open("POST", url, true);
+request.setRequestHeader("Content-Type", "application/json");
+request.onreadystatechange = function () {
+    if (request.readyState === 4 && request.status === 200) {
+        var json = JSON.parse(request.responseText);
+        console.log(json.title + ", " + json.detail);
+    }
+};
+
+	var data = JSON.stringify({"title": $('#title').val(), "detail": $('#detail').val()});
+	console.log(request.send(data));
+	alert(data);
+});	
+
+</script>
+</html>
